@@ -8,3 +8,4 @@ public class UsuarioDAOHibernateJPA extends GenericDAOHibernateJPA<Usuario> impl
 		super(Usuario.class);
 	}
 }
+  

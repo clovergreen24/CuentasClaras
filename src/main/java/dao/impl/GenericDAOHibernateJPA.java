@@ -44,7 +44,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 			em.close();
 		}
 
-	}
+	}  
 
 	@Override
 	public T borrar(Long id) {
