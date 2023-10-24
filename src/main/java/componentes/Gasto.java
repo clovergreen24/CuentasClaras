@@ -2,16 +2,26 @@ package componentes;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="Gastos")
 public class Gasto {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idGasto;
 	private BigDecimal monto;
 	private Calendar fecha;
 	private Integer tipoDivision;
+	@OneToOne
+	@JoinColumn(referencedColumnName="idCategoria")
 	private Categoria categoria;
+	
 	private Grupo grupo;
+	
 	private Usuario usuario;
+	
 	private List<Saldo> saldos;
+	
 	private String imagen;
 	
 	

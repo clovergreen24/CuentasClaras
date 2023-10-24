@@ -1,8 +1,12 @@
 package componentes;
 
 import java.math.BigDecimal;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="Pagos")
 public class Pago {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPago;
 	private BigDecimal monto;
 	private Grupo grupo;

@@ -1,7 +1,11 @@
 package componentes;
 import java.math.BigDecimal;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="Saldos")
 public class Saldo {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idSaldo;
 	private BigDecimal monto;
 	

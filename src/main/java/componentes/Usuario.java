@@ -3,8 +3,12 @@ package componentes;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="Usuarios")
 public class Usuario {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUsuario;  
 	private String usuario;  
 	private String nombre;

@@ -1,7 +1,11 @@
 
 package componentes;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="Categorias")
 public class Categoria {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCategoria;
 	private String tipo;
 	private String imagen;
