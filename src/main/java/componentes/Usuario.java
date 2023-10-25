@@ -17,13 +17,16 @@ public class Usuario {
 	private String foto;
 	@ManyToMany
 	@JoinColumn(referencedColumnName="idGrupo")
-	private List<Grupo> grupos; 
+	private List<Grupo> grupos;
+	@OneToMany(mappedBy="usuario")
 	private List<Pago> pagos;
 	@OneToMany(mappedBy="usuario")
 	private List<Gasto> gastos;
 	@ManyToMany
 	@JoinColumn(referencedColumnName="idUsuario")
 	private List<Usuario> amigos;
+	@OneToMany
+	@JoinColumn(referencedColumnName="idSaldo")
 	private List<Saldo> saldos;
 	
 	

@@ -9,8 +9,14 @@ public class Pago {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPago;
 	private BigDecimal monto;
+	@ManyToOne
+	@JoinColumn(referencedColumnName="idGrupo")
 	private Grupo grupo;
+	@ManyToOne
+	@JoinColumn(referencedColumnName="idUsuario")
 	private Usuario usuario;
+	@ManyToOne
+	@JoinColumn(referencedColumnName="idUsuario")
 	private Usuario usuarioDestino;
 	
 	public Pago (Long idPago, BigDecimal monto, Grupo grupo, Usuario usuario, Usuario usuarioDestino) {

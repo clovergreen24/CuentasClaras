@@ -8,12 +8,15 @@ public class Saldo {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idSaldo;
 	private BigDecimal monto;
+	@ManyToOne
+	private Usuario usuario;
 	
 	
 	
-	public Saldo(Long idSaldo, BigDecimal monto) {
-		this.idSaldo = idSaldo;
-		this.monto = monto;
+	public Saldo(Long idSaldo, BigDecimal monto, Usuario usuario) {
+		this.setIdSaldo(idSaldo);
+		this.setMonto(monto);
+		this.setUsuario(usuario);
 	}
 
 
@@ -29,6 +32,16 @@ public class Saldo {
 	}
 	public void setMonto(BigDecimal monto) {
 		this.monto = monto;
+	}
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 
