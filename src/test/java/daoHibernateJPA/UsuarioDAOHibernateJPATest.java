@@ -22,7 +22,7 @@ public void testCrearUsuario() {
 	List<Saldo> saldos1 = new ArrayList<>();
 	
 	List<Grupo> grupos2 = new ArrayList<>();
-	List<Pago> pagos2 = new ArrayList<>();
+	List<Pago> pagos2 = new ArrayList<>(); 
 	List<Gasto> gastos2 = new ArrayList<>();
 	List<Usuario> amigos2 = new ArrayList<>();
 	List<Saldo> saldos2 = new ArrayList<>();
