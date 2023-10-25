@@ -9,4 +9,5 @@ public class EMF {
 			public static EntityManagerFactory getEMF() {
 			return em;
 			}
+			
 }    

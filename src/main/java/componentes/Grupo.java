@@ -1,23 +1,26 @@
 package componentes;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Grupos")
 public class Grupo {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
- private Long idGrupo;
- private String nombre;
- private String imagen;
- @OneToOne
-@JoinColumn(referencedColumnName="idCategoria")
- private Categoria categoria;
- private List<Saldo> saldos;
- private List<Usuario> integrantes;
- private List<Gasto> gastos;
- private List<Pago> pagos;
+	private Long idGrupo;
+	private String nombre;
+	private String imagen;
+	@ManyToOne
+	@JoinColumn(referencedColumnName="idCategoria")
+	private Categoria categoria;
+	@OneToMany
+	@JoinColumn(referencedColumnName="idSaldo")
+	private List<Saldo> saldos;
+	@ManyToMany(mappedBy="grupos")
+	private List<Usuario> integrantes;
+	@OneToMany(mappedBy="grupo")
+	private List<Gasto> gastos;
+	private List<Pago> pagos;
  
  
  

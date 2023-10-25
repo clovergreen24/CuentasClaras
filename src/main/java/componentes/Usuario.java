@@ -15,9 +15,14 @@ public class Usuario {
 	private String contraseña;
 	private String email;
 	private String foto;
+	@ManyToMany
+	@JoinColumn(referencedColumnName="idGrupo")
 	private List<Grupo> grupos; 
 	private List<Pago> pagos;
+	@OneToMany(mappedBy="usuario")
 	private List<Gasto> gastos;
+	@ManyToMany
+	@JoinColumn(referencedColumnName="idUsuario")
 	private List<Usuario> amigos;
 	private List<Saldo> saldos;
 	

@@ -15,6 +15,10 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	public GenericDAOHibernateJPA(Class<T> clase) {
 		clasePersistente = clase;
 	}
+	
+	public Class<T> getPersistentClass(){
+		return clasePersistente;
+	}
 
 	@Override
 	public T actualizar(T entity) {
@@ -59,7 +63,11 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public boolean existe(Long id) {
-		// TODO Auto-generated method stub
+		EntityManager em = EMF.getEMF().createEntityManager();
+		T entity = em.find(this.getPersistentClass(), id);
+		if (entity != null) {
+			return true;
+		}
 		return false;
 	}
 
@@ -83,15 +91,16 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public T recuperar(Serializable id) {
-		// TODO Auto-generated method stub
-		return null;
+	public T recuperar(Long id) {
+		EntityManager em = EMF.getEMF().createEntityManager();
+		T resultado = em.find(this.getPersistentClass(), id);
+		return resultado;
 	}
 
 	@Override
 	public List<T> recuperarTodos(String column) {
 		Query consulta = EMF.getEMF().createEntityManager()
-				.createQuery("select e from " + getPersistentClass().getSimpleName() + " e order by e." + columnOrder);
+				.createQuery("select e from " + getPersistentClass().getSimpleName() + " e order by e." + column);
 		List<T> resultado = (List<T>) consulta.getResultList();
 		return resultado;
 	}

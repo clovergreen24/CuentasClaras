@@ -7,18 +7,12 @@ version="2.1">
 
 <persistence-unit name="miUP">
 
-<class>componentes.Categoria</class>
-<class>componentes.Usuario</class>
-<class>componentes.Gasto</class>
-<class>componentes.Grupo</class>
-<class>componentes.Pago</class>
-<class>componentes.Saldo</class>
-
 <properties>
 <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
 <property name="hibernate.connection.password" value="root"/>
 <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/CuentasClaras"/>
 <property name="hibernate.connection.username" value="root" />
+<property name="hibernate.hbm2ddl.auto" value="update"/> 
 </properties>
 </persistence-unit>
 </persistence>

@@ -12,16 +12,18 @@ public class Gasto {
 	private BigDecimal monto;
 	private Calendar fecha;
 	private Integer tipoDivision;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(referencedColumnName="idCategoria")
 	private Categoria categoria;
-	
+	@ManyToOne
+	@JoinColumn(nullable=true, referencedColumnName="idGrupo")
 	private Grupo grupo;
-	
+	@ManyToOne
+	@JoinColumn(referencedColumnName="idUsuario")
 	private Usuario usuario;
-	
+	@OneToMany
+	@JoinColumn(referencedColumnName="idSaldo")
 	private List<Saldo> saldos;
-	
 	private String imagen;
 	
 	
