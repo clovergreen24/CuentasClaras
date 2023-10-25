@@ -20,6 +20,7 @@ public class Grupo {
 	private List<Usuario> integrantes;
 	@OneToMany(mappedBy="grupo")
 	private List<Gasto> gastos;
+	@OneToMany(mappedBy="grupo")
 	private List<Pago> pagos;
  
  

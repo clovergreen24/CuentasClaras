@@ -16,7 +16,7 @@ public class Gasto {
 	@JoinColumn(referencedColumnName="idCategoria")
 	private Categoria categoria;
 	@ManyToOne
-	@JoinColumn(nullable=true, referencedColumnName="idGrupo")
+	@JoinColumn(referencedColumnName="idGrupo")
 	private Grupo grupo;
 	@ManyToOne
 	@JoinColumn(referencedColumnName="idUsuario")
