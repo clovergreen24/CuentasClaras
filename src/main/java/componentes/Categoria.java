@@ -10,7 +10,9 @@ public class Categoria {
 	private String tipo;
 	private String imagen;
 	
-	
+	public Categoria() {
+		super();
+	}
 	
 	public Categoria(Long idCategoria, String tipo, String imagen) {
 		this.idCategoria = idCategoria;

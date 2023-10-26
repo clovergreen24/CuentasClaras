@@ -11,7 +11,9 @@ public class Saldo {
 	@ManyToOne
 	private Usuario usuario;
 	
-	
+	public Saldo() {
+		super();
+	}
 	
 	public Saldo(Long idSaldo, BigDecimal monto, Usuario usuario) {
 		this.setIdSaldo(idSaldo);

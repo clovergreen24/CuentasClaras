@@ -29,6 +29,9 @@ public class Usuario {
 	private List<Saldo> saldos;
 	
 	
+	public Usuario() {
+		super();
+	}
 	
 	public Usuario(Long idUsuario, String usuario, String nombre, String contraseña, String email, String foto,
 			List<Grupo> grupos, List<Pago> pagos, List<Gasto> gastos, List<Usuario> amigos, List<Saldo> saldos) {

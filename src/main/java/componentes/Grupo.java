@@ -23,7 +23,9 @@ public class Grupo {
 	@OneToMany(mappedBy="grupo")
 	private List<Pago> pagos;
  
- 
+	public Grupo() {
+		super();
+	}
  
  public Grupo(Long idGrupo, String nombre, String imagen, Categoria categoria, List<Saldo> saldos,
 		List<Usuario> integrantes, List<Gasto> gastos, List<Pago> pagos) {

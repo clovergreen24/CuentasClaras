@@ -19,6 +19,10 @@ public class Pago {
 	@JoinColumn(referencedColumnName="idUsuario")
 	private Usuario usuarioDestino;
 	
+	public Pago() {
+		super();
+	}
+	
 	public Pago (Long idPago, BigDecimal monto, Grupo grupo, Usuario usuario, Usuario usuarioDestino) {
 		this.idPago = idPago;
 		this.monto = monto;
