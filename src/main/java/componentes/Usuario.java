@@ -11,7 +11,7 @@ public class Usuario {
 	private Long idUsuario;  
 	private String usuario;  
 	private String nombre;
-	private String contraseña;
+	private String contraseÃ±a;
 	private String email;
 	private String foto;
 	@ManyToMany
@@ -30,13 +30,13 @@ public class Usuario {
 	
 	
 	
-	public Usuario(Long idUsuario, String usuario, String nombre, String contraseña, String email, String foto,
+	public Usuario(Long idUsuario, String usuario, String nombre, String contraseÃ±a, String email, String foto,
 			List<Grupo> grupos, List<Pago> pagos, List<Gasto> gastos, List<Usuario> amigos, List<Saldo> saldos) {
 		super();
 		this.idUsuario = idUsuario;
 		this.usuario = usuario;
 		this.nombre = nombre;
-		this.contraseña = contraseña;
+		this.contraseÃ±a = contraseÃ±a;
 		this.email = email;
 		this.foto = foto;
 		this.grupos = grupos;
@@ -64,11 +64,11 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getContraseña() {
-		return contraseña;
+	public String getContraseÃ±a() {
+		return contraseÃ±a;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContraseÃ±a(String contraseÃ±a) {
+		this.contraseÃ±a = contraseÃ±a;
 	}
 	public String getEmail() {
 		return email;

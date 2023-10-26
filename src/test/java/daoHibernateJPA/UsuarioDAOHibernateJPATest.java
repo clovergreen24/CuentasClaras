@@ -11,6 +11,7 @@ import componentes.Grupo;
 import componentes.Pago;
 import componentes.Saldo;
 import componentes.Usuario;
+import dao.impl.DAOFactory;
 import dao.impl.GenericDAOHibernateJPA;
 
 public class UsuarioDAOHibernateJPATest {
@@ -35,7 +36,7 @@ public void testCrearUsuario() {
 	final Usuario usr2= new Usuario(2L, "Mana", "Mariana", "contrasenia2", "keimmariana@gmail.com", "ruta/foto2.jpg", grupos2, pagos2, gastos2, amigos2, saldos2);
 	//Assertions.assertEquals(0, usr1.getAmigos().size());
 	
-	usuario = new GenericDAOHiernateJPA(); 
+	usuario =  (GenericDAOHibernateJPA<Usuario>) new DAOFactory().getUsuarioDAO();
 	Assertions.assertEquals(2, usuario.recuperarTodos("nombre").size());
 
 }
