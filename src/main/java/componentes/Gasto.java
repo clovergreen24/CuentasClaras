@@ -26,7 +26,9 @@ public class Gasto {
 	private List<Saldo> saldos;
 	private String imagen;
 	
-	
+	public Gasto() {
+		super();
+	}
 	
 	public Gasto(Long idGasto, BigDecimal monto, Calendar fecha, Integer tipoDivision, Categoria categoria, Grupo grupo,
 			Usuario usuario, List<Saldo> saldos, String imagen) {

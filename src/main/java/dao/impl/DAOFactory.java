@@ -8,6 +8,7 @@ import clasesDAO.SaldoDAO;
 import clasesDAO.UsuarioDAO;
 
 public class DAOFactory {
+	
 	public static UsuarioDAO getUsuarioDAO() {
 		return new UsuarioDAOHibernateJPA();
 		}
