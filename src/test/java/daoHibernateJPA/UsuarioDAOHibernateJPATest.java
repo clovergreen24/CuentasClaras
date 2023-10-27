@@ -13,35 +13,25 @@ import componentes.Saldo;
 import componentes.Usuario;
 import dao.impl.DAOFactory;
 import dao.impl.GenericDAOHibernateJPA;
-import dao.impl.UsuarioDAOHibernateJPA;
+
 
 public class UsuarioDAOHibernateJPATest {
 	
-	private GenericDAOHibernateJPA<Usuario> usuario;    //?????
+	@SuppressWarnings("unchecked")
+	private GenericDAOHibernateJPA<Usuario> usuario = (GenericDAOHibernateJPA<Usuario>) DAOFactory.getUsuarioDAO();
+	private Usuario u;
 	
-@SuppressWarnings("unchecked")
 @Test
 public void testCrearUsuario() {
-	List<Grupo> grupos1 = new ArrayList<>();
-	List<Pago> pagos1 = new ArrayList<>();
-	List<Gasto> gastos1 = new ArrayList<>();
-	List<Usuario> amigos1 = new ArrayList<>();
-	List<Saldo> saldos1 = new ArrayList<>();
-	 
-	List<Grupo> grupos2 = new ArrayList<>();
-	List<Pago> pagos2 = new ArrayList<>(); 
-	List<Gasto> gastos2 = new ArrayList<>();
-	List<Usuario> amigos2 = new ArrayList<>();
-	List<Saldo> saldos2 = new ArrayList<>();
+	List<Grupo> grupos = new ArrayList<>();
+	List<Pago> pagos = new ArrayList<>();
+	List<Gasto> gastos = new ArrayList<>();
+	List<Usuario> amigos = new ArrayList<>();
+	List<Saldo> saldos = new ArrayList<>();
 	
-	new DAOFactory();
-	usuario = (GenericDAOHibernateJPA<Usuario>) DAOFactory.getUsuarioDAO();
 	
-	final Usuario usr1= new Usuario("clovergreen", "Camilo", "contrasenia1", "cobeagac@gmail.com", "ruta/foto1.jpg", grupos1, pagos1, gastos1, amigos1, saldos1);
-	final Usuario usr2= new Usuario("Mana", "Mariana", "contrasenia2", "keimmariana@gmail.com", "ruta/foto2.jpg", grupos2, pagos2, gastos2, amigos2, saldos2);
-	//Assertions.assertEquals(0, usr1.getAmigos().size());
-	
-
+	Usuario usr1= new Usuario("clovergreen", "Camilo", "contrasenia1", "cobeagac@gmail.com", "ruta/foto1.jpg", grupos, pagos, gastos, amigos, saldos);
+	Usuario usr2= new Usuario("Mana", "Mariana", "contrasenia2", "keimmariana@gmail.com", "ruta/foto2.jpg", grupos, pagos, gastos, amigos, saldos);
 
 	
 	usuario.persistir(usr1);
@@ -49,4 +39,55 @@ public void testCrearUsuario() {
 
 	Assertions.assertEquals(6, usuario.recuperarTodos("nombre").size());
 }
+@Test
+public void testActualizarUsuario() {
+		u = usuario.recuperar((long) 1);
+		u.setNombre("Link");
+		usuario.actualizar(u);
+		Assertions.assertEquals("Link",usuario.recuperar((long) 1).getNombre());
+}
+
+	@Test
+	public void testBorrarUsuarioConEntidad(){
+		u = usuario.recuperar((long) 4);
+		usuario.borrar(u);
+		Assertions.assertFalse(usuario.existe((long)4));
+	}
+	
+	@Test
+	public void testBorrarUsuarioConId(){
+		u = usuario.recuperar((long) 5);
+		usuario.borrar((long)5);
+		Assertions.assertFalse(usuario.existe((long)5));
+	}
+	
+	@Test
+	public void testRecuperarUsuarioConId() {
+		List<Grupo> grupos = new ArrayList<>();
+		List<Pago> pagos = new ArrayList<>();
+		List<Gasto> gastos = new ArrayList<>();
+		List<Usuario> amigos = new ArrayList<>();
+		List<Saldo> saldos = new ArrayList<>();
+		
+		Usuario usr1= new Usuario("pepe", "Pepe", "contra", "pepe@gmail.com", "ruta/fotoPepe.jpg", grupos, pagos, gastos, amigos, saldos);
+		usr1=usuario.persistir(usr1);
+		Assertions.assertEquals("pepe", usuario.recuperar(usr1.getIdUsuario()).getUsuario());
+	
+	}
+	@Test
+	public void testRecuperarTodos() {//TERMINAR
+		List<Grupo> grupos = new ArrayList<>();
+		List<Pago> pagos = new ArrayList<>();
+		List<Gasto> gastos = new ArrayList<>();
+		List<Usuario> amigos = new ArrayList<>();
+		List<Saldo> saldos = new ArrayList<>();
+		
+		Assertions.assertEquals(5, usuario.recuperarTodos("nombre").size());
+	
+	}
+	
+	@Test
+	public void testExisteUsuario() {//TERMINAR
+		Assertions.assertEquals(true,usuario.existe((long) 7));
+	}
 }

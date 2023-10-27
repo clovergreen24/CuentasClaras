@@ -51,14 +51,27 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	}  
 
 	@Override
-	public T borrar(Long id) {
+	public void borrar(Long id) {
 		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityTransaction tx = null;
 		T entity = em.find(this.getPersistentClass(), id);
-		if (entity != null) {
-			em.remove(entity);
+		if (this.existe(id)) {
+		try {
+			tx = em.getTransaction();
+			tx.begin();
+			em.remove(em.merge(entity));
+			tx.commit();
+		} catch (RuntimeException e) {
+			if (tx != null && tx.isActive())
+				tx.rollback();
+			throw e; // escribir en un log o mostrar un mensaje
+		} finally {
+			em.close();
 		}
-		em.close();
-		return entity;
+		}
+		else {
+			System.out.println("Objeto a borrar no existe"); //consultar
+		}
 	}
 
 	@Override
@@ -97,6 +110,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		return resultado;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> recuperarTodos(String column) {
 		Query consulta = EMF.getEMF().createEntityManager()
