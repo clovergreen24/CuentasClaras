@@ -5,18 +5,20 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="Saldos")
 public class Saldo {
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idSaldo;
 	private BigDecimal monto;
 	@ManyToOne
 	private Usuario usuario;
+	@ManyToOne
+	private Gasto gasto;
 	
 	public Saldo() {
 		super();
 	}
 	
-	public Saldo(Long idSaldo, BigDecimal monto, Usuario usuario) {
-		this.setIdSaldo(idSaldo);
+	public Saldo(BigDecimal monto, Usuario usuario) {
 		this.setMonto(monto);
 		this.setUsuario(usuario);
 	}
@@ -25,9 +27,6 @@ public class Saldo {
 	public Long getIdSaldo() {
 		return idSaldo;
 	}
-
-	
-	public void setIdSaldo(Long idSaldo) { this.idSaldo = idSaldo; }
 	
 	public BigDecimal getMonto() {
 		return monto;

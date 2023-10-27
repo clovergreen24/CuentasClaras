@@ -14,18 +14,29 @@ public class Usuario {
 	private String contraseña;
 	private String email;
 	private String foto;
+	
 	@ManyToMany
-	@JoinColumn(referencedColumnName="idGrupo")
+	@JoinTable(
+			name= "GruposDelUsuario",
+			joinColumns = @JoinColumn(name="idUsuario"),
+			inverseJoinColumns= @JoinColumn(name="idGrupo"))
 	private List<Grupo> grupos;
+	
 	@OneToMany(mappedBy="usuario")
 	private List<Pago> pagos;
+	
 	@OneToMany(mappedBy="usuario")
 	private List<Gasto> gastos;
+	
 	@ManyToMany
-	@JoinColumn(referencedColumnName="idUsuario")
+	@JoinTable(
+			name= "Amigos",
+			joinColumns = @JoinColumn(name="idUsuario"),
+			inverseJoinColumns= @JoinColumn(name="idAmigo"))
 	private List<Usuario> amigos;
+	
 	@OneToMany
-	@JoinColumn(referencedColumnName="idSaldo")
+	@JoinColumn(name="idSaldo")
 	private List<Saldo> saldos;
 	
 	
@@ -33,27 +44,24 @@ public class Usuario {
 		super();
 	}
 	
-	public Usuario(Long idUsuario, String usuario, String nombre, String contraseña, String email, String foto,
+	public Usuario(String usuario, String nombre, String contraseña, String email, String foto,
 			List<Grupo> grupos, List<Pago> pagos, List<Gasto> gastos, List<Usuario> amigos, List<Saldo> saldos) {
 		super();
-		this.idUsuario = idUsuario;
-		this.usuario = usuario;
-		this.nombre = nombre;
-		this.contraseña = contraseña;
-		this.email = email;
-		this.foto = foto;
-		this.grupos = grupos;
-		this.pagos = pagos;
-		this.gastos = gastos;
-		this.amigos = amigos;
-		this.saldos = saldos;
+		setUsuario(usuario);
+		setNombre(nombre);
+		setContraseña(contraseña);
+		setEmail(email);
+		setFoto(foto);
+		setGrupos(grupos);
+		setPagos(pagos);
+		setGastos(gastos);
+		setAmigos(amigos);
+		setSaldos(saldos);
 	}
 
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
-
-	public void setIdUsuario(Long idUsuario) { this.idUsuario = idUsuario; }
 	
 	public String getUsuario() {
 		return usuario;

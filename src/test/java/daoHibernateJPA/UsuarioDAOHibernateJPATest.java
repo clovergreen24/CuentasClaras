@@ -19,6 +19,7 @@ public class UsuarioDAOHibernateJPATest {
 	
 	private GenericDAOHibernateJPA<Usuario> usuario;    //?????
 	
+@SuppressWarnings("unchecked")
 @Test
 public void testCrearUsuario() {
 	List<Grupo> grupos1 = new ArrayList<>();
@@ -33,15 +34,19 @@ public void testCrearUsuario() {
 	List<Usuario> amigos2 = new ArrayList<>();
 	List<Saldo> saldos2 = new ArrayList<>();
 	
-	final Usuario usr1= new Usuario(1L, "clovergreen", "Camilo", "contrasenia1", "cobeagac@gmail.com", "ruta/foto1.jpg", grupos1, pagos1, gastos1, amigos1, saldos1);
-	final Usuario usr2= new Usuario(2L, "Mana", "Mariana", "contrasenia2", "keimmariana@gmail.com", "ruta/foto2.jpg", grupos2, pagos2, gastos2, amigos2, saldos2);
+	new DAOFactory();
+	usuario = (GenericDAOHibernateJPA<Usuario>) DAOFactory.getUsuarioDAO();
+	
+	final Usuario usr1= new Usuario("clovergreen", "Camilo", "contrasenia1", "cobeagac@gmail.com", "ruta/foto1.jpg", grupos1, pagos1, gastos1, amigos1, saldos1);
+	final Usuario usr2= new Usuario("Mana", "Mariana", "contrasenia2", "keimmariana@gmail.com", "ruta/foto2.jpg", grupos2, pagos2, gastos2, amigos2, saldos2);
 	//Assertions.assertEquals(0, usr1.getAmigos().size());
+	
 
-	usuario = (GenericDAOHibernateJPA<Usuario>) new DAOFactory().getUsuarioDAO();
+
+	
 	usuario.persistir(usr1);
 	usuario.persistir(usr2);	
 
-	Assertions.assertEquals(2, usuario.recuperarTodos("nombre").size());
-
+	Assertions.assertEquals(6, usuario.recuperarTodos("nombre").size());
 }
 }

@@ -22,7 +22,7 @@ public class Gasto {
 	@JoinColumn(referencedColumnName="idUsuario")
 	private Usuario usuario;
 	@OneToMany
-	@JoinColumn(referencedColumnName="idSaldo")
+	@JoinColumn(name="idSaldo")
 	private List<Saldo> saldos;
 	private String imagen;
 	
@@ -30,9 +30,8 @@ public class Gasto {
 		super();
 	}
 	
-	public Gasto(Long idGasto, BigDecimal monto, Calendar fecha, Integer tipoDivision, Categoria categoria, Grupo grupo,
+	public Gasto(BigDecimal monto, Calendar fecha, Integer tipoDivision, Categoria categoria, Grupo grupo,
 			Usuario usuario, List<Saldo> saldos, String imagen) {
-		this.idGasto = idGasto;
 		this.monto = monto;
 		this.fecha = fecha;
 		this.tipoDivision = tipoDivision;

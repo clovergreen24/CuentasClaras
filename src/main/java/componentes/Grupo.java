@@ -10,19 +10,24 @@ public class Grupo {
 	private Long idGrupo;
 	private String nombre;
 	private String imagen;
+	
 	@ManyToOne
 	@JoinColumn(referencedColumnName="idCategoria")
 	private Categoria categoria;
+	
 	@OneToMany
-	@JoinColumn(referencedColumnName="idSaldo")
+	@JoinColumn(name="idSaldo")
 	private List<Saldo> saldos;
+	
 	@ManyToMany(mappedBy="grupos")
 	private List<Usuario> integrantes;
+	
 	@OneToMany(mappedBy="grupo")
 	private List<Gasto> gastos;
+	
 	@OneToMany(mappedBy="grupo")
 	private List<Pago> pagos;
- 
+
 	public Grupo() {
 		super();
 	}
