@@ -1,6 +1,7 @@
 package daoHibernateJPA;
 
 import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -32,12 +33,18 @@ public void testCrearUsuario() {
 	
 	Usuario usr1= new Usuario("clovergreen", "Camilo", "contrasenia1", "cobeagac@gmail.com", "ruta/foto1.jpg", grupos, pagos, gastos, amigos, saldos);
 	Usuario usr2= new Usuario("Mana", "Mariana", "contrasenia2", "keimmariana@gmail.com", "ruta/foto2.jpg", grupos, pagos, gastos, amigos, saldos);
-
 	
+	List<Usuario> amigos1 = new ArrayList<>();
 	usuario.persistir(usr1);
-	usuario.persistir(usr2);	
+	usuario.persistir(usr2);
+	amigos.add(usr2);
+	amigos1.add(usr1);
+	usr1.setAmigos(amigos);
+	usr2.setAmigos(amigos1);
+	usuario.actualizar(usr2);
+	usuario.actualizar(usr1);
 
-	Assertions.assertEquals(6, usuario.recuperarTodos("nombre").size());
+	Assertions.assertEquals(10, usuario.recuperarTodos("nombre").size());
 }
 @Test
 public void testActualizarUsuario() {

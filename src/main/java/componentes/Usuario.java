@@ -28,14 +28,14 @@ public class Usuario {
 	@OneToMany(mappedBy="usuario")
 	private List<Gasto> gastos;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.MERGE)
 	@JoinTable(
 			name= "Amigos",
 			joinColumns = @JoinColumn(name="idUsuario"),
 			inverseJoinColumns= @JoinColumn(name="idAmigo"))
 	private List<Usuario> amigos;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.MERGE)
 	@JoinColumn(name="idSaldo")
 	private List<Saldo> saldos;
 	

@@ -18,9 +18,10 @@ public class Saldo {
 		super();
 	}
 	
-	public Saldo(BigDecimal monto, Usuario usuario) {
+	public Saldo(BigDecimal monto, Usuario usuario, Gasto gasto) {
 		this.setMonto(monto);
 		this.setUsuario(usuario);
+		this.gasto=gasto;
 	}
 
 
