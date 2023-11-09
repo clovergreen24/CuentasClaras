@@ -8,10 +8,12 @@ import jakarta.persistence.*;
 @Table(name="Usuarios")
 public class Usuario {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idUsuario;  
+	private Long idUsuario;
+	@Column(name="usuario",unique=true)
 	private String usuario;  
 	private String nombre;
-	private String contraseña;
+	private String contrasenia;
+	@Column(name="email",unique=true)
 	private String email;
 	private String foto;
 	
@@ -44,12 +46,12 @@ public class Usuario {
 		super();
 	}
 	
-	public Usuario(String usuario, String nombre, String contraseña, String email, String foto,
+	public Usuario(String usuario, String nombre, String contrasenia, String email, String foto,
 			List<Grupo> grupos, List<Pago> pagos, List<Gasto> gastos, List<Usuario> amigos, List<Saldo> saldos) {
 		super();
 		setUsuario(usuario);
 		setNombre(nombre);
-		setContraseña(contraseña);
+		setContrasenia(contrasenia);
 		setEmail(email);
 		setFoto(foto);
 		setGrupos(grupos);
@@ -75,11 +77,11 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenia() {
+		return contrasenia;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 	public String getEmail() {
 		return email;

@@ -19,7 +19,11 @@ public class Grupo {
 	@JoinColumn(name="idSaldo")
 	private List<Saldo> saldos;
 	
-	@ManyToMany(mappedBy="grupos")
+	@ManyToMany(cascade=CascadeType.MERGE)
+	@JoinTable(
+			name= "IntegrantesGrupo",
+			joinColumns= @JoinColumn (name="idGrupo"),
+			inverseJoinColumns = @JoinColumn(name= "idUsuario"))
 	private List<Usuario> integrantes;
 	
 	@OneToMany(mappedBy="grupo")
@@ -32,9 +36,8 @@ public class Grupo {
 		super();
 	}
  
- public Grupo(Long idGrupo, String nombre, String imagen, Categoria categoria, List<Saldo> saldos,
+ public Grupo(String nombre, String imagen, Categoria categoria, List<Saldo> saldos,
 		List<Usuario> integrantes, List<Gasto> gastos, List<Pago> pagos) {
-	this.idGrupo = idGrupo;
 	this.nombre = nombre;
 	this.imagen = imagen;
 	this.categoria = categoria;

@@ -23,8 +23,7 @@ public class Pago {
 		super();
 	}
 	
-	public Pago (Long idPago, BigDecimal monto, Grupo grupo, Usuario usuario, Usuario usuarioDestino) {
-		this.idPago = idPago;
+	public Pago (BigDecimal monto, Grupo grupo, Usuario usuario, Usuario usuarioDestino) {
 		this.monto = monto;
 		this.grupo = grupo;
 		this.usuario = usuario;

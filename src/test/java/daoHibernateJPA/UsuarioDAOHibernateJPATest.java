@@ -44,7 +44,7 @@ public void testCrearUsuario() {
 	usuario.actualizar(usr2);
 	usuario.actualizar(usr1);
 
-	Assertions.assertEquals(10, usuario.recuperarTodos("nombre").size());
+	Assertions.assertEquals(2, usuario.recuperarTodos("nombre").size());
 }
 @Test
 public void testActualizarUsuario() {
