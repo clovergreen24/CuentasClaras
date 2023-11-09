@@ -70,7 +70,7 @@ public class GrupoDAOHibernateJPATest {
 	
 	@Test
 	public void testRecuperarGrupoConId() {
-		Assertions.assertEquals((long) 1, (long) 1);;
+		Assertions.assertEquals("Viaje a LP", grupo.recuperar((long) 1).getNombre());
 	}
 	
 	@Test
