@@ -44,7 +44,10 @@ public class GrupoDAOHibernateJPATest {
 		
 		Grupo gr1 = new Grupo("Viaje a LP", "ruta/fotoG1.jpg", cat, saldos, integrantes, gastos, pagos);
 		grupo.persistir(gr1);
-
+        
+		u.getGrupos().add(gr1);
+		usuario.actualizar(u);
+		
 		Assertions.assertEquals(1, grupo.recuperarTodos("nombre").size());
 	}
 

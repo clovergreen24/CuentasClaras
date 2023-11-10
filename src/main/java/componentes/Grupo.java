@@ -19,11 +19,7 @@ public class Grupo {
 	@JoinColumn(name="idSaldo")
 	private List<Saldo> saldos;
 	
-	@ManyToMany(cascade=CascadeType.MERGE)
-	@JoinTable(
-			name= "IntegrantesGrupo",
-			joinColumns= @JoinColumn (name="idGrupo"),
-			inverseJoinColumns = @JoinColumn(name= "idUsuario"))
+	@ManyToMany(mappedBy="grupos")
 	private List<Usuario> integrantes;
 	
 	@OneToMany(mappedBy="grupo")

@@ -15,7 +15,7 @@ public class Gasto {
 	@ManyToOne
 	@JoinColumn(referencedColumnName="idCategoria")
 	private Categoria categoria;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(referencedColumnName="idGrupo")
 	private Grupo grupo;
 	@ManyToOne

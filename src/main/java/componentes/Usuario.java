@@ -17,7 +17,7 @@ public class Usuario {
 	private String email;
 	private String foto;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.MERGE)
 	@JoinTable(
 			name= "GruposDelUsuario",
 			joinColumns = @JoinColumn(name="idUsuario"),
